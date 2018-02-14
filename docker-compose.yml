@@ -1,9 +1,9 @@
-version: '2'
+version: '3'
 services:
   db:
     image: mysql:5.7
     volumes:
-      - "./.data/db:/var/lib/mysql"
+      - db_data:/var/lib/mysql
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: productSchool
@@ -23,3 +23,9 @@ services:
     environment:
       WORDPRESS_DB_HOST: db:3306
       WORDPRESS_DB_PASSWORD: productSchool
+    working_dir: /var/www/html
+    volumes:
+      - /Users/Marcos/Documents/wordpressGrunt/wp-content:/var/www/html/wp-content
+      - /Users/Marcos/Documents/wordpressGrunt/uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
+volumes:
+    db_data:
